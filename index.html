@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mis 15 Años — Rachell</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --ice-blue: #b8d4e3;
+                --deep-frost: #2c3e50;
+                --silver: #eef2f3;
+                --white: #ffffff;
+                --glass: rgba(255, 255, 255, 0.25);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                min-height: 100vh;
+                font: "16px/1.5 Lora,Georgia,serif";
+                color: var(--deep-frost);
+                background: linear-gradient(
+                    180deg,
+                    #dbeef7 0%,
+                    #f0f7fb 40%,
+                    #ffffff 100%
+                );
+                overflow-x: hidden;
+            }
+
+            /* Falling snow */
+            .snowflakes {
+                position: fixed;
+                inset: 0;
+                pointer-events: none;
+                z-index: 1;
+            }
+
+            .snowflake {
+                position: absolute;
+                top: -2rem;
+                color: rgba(255, 255, 255, 0.85);
+                font-size: 1.2rem;
+                animation:
+                    fall linear infinite,
+                    sway ease-in-out infinite;
+                opacity: 0.8;
+            }
+
+            @keyframes fall {
+                0% {
+                    transform: translateY(-2rem);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(110vh);
+                    opacity: 0.4;
+                }
+            }
+
+            @keyframes sway {
+                0%,
+                100% {
+                    margin-left: 0;
+                }
+                50% {
+                    margin-left: 2rem;
+                }
+            }
+
+            /* Layout */
+            .page {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                padding: 2rem 1rem;
+                text-align: center;
+            }
+
+            .invitation-card {
+                width: 100%;
+                max-width: 520px;
+                border-radius: 1.5rem;
+                overflow: hidden;
+                box-shadow:
+                    0 25px 60px rgba(44, 62, 80, 0.18),
+                    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+                background: var(--white);
+                animation: floatIn 1.2s ease-out both;
+            }
+
+            @keyframes floatIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(2rem) scale(0.98);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            .invitation-card img {
+                display: block;
+                width: 100%;
+                height: auto;
+                transition:
+                    transform 0.35s ease,
+                    filter 0.35s ease;
+            }
+
+            .invitation-card a {
+                display: block;
+                cursor: pointer;
+            }
+
+            .invitation-card a:hover img,
+            .invitation-card a:focus img {
+                transform: scale(1.015);
+                filter: brightness(1.03);
+            }
+
+            /* Actions */
+            .actions {
+                margin-top: 1.75rem;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.875rem;
+                justify-content: center;
+                animation: floatIn 1.2s ease-out 0.3s both;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.85rem 1.6rem;
+                border-radius: 999px;
+                font-family: "Cinzel", serif;
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-decoration: none;
+                letter-spacing: 0.03em;
+                transition:
+                    transform 0.2s ease,
+                    box-shadow 0.2s ease,
+                    background 0.2s ease;
+                cursor: pointer;
+                border: none;
+            }
+
+            .btn-primary {
+                background: linear-gradient(135deg, #2b5876 0%, #4e4376 100%);
+                color: var(--white);
+                box-shadow: 0 8px 20px rgba(43, 88, 118, 0.28);
+            }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 12px 28px rgba(43, 88, 118, 0.35);
+            }
+
+            .btn-secondary {
+                background: var(--glass);
+                color: var(--deep-frost);
+                border: 1px solid rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(6px);
+                box-shadow: 0 4px 14px rgba(44, 62, 80, 0.08);
+            }
+
+            .btn-secondary:hover {
+                background: rgba(255, 255, 255, 0.45);
+                transform: translateY(-2px);
+            }
+
+            /* Footer */
+            footer {
+                margin-top: 2rem;
+                font-family: "Great Vibes", cursive;
+                font-size: 1.6rem;
+                color: #5d7a8c;
+                opacity: 0.9;
+                animation: floatIn 1.2s ease-out 0.5s both;
+            }
+
+            /* Sparkle accents */
+            .sparkle {
+                position: fixed;
+                width: 6px;
+                height: 6px;
+                background: white;
+                border-radius: 50%;
+                box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.9);
+                pointer-events: none;
+                z-index: 1;
+                animation: twinkle 3s ease-in-out infinite;
+            }
+
+            @keyframes twinkle {
+                0%,
+                100% {
+                    opacity: 0.3;
+                    transform: scale(0.7);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1.2);
+                }
+            }
+
+            .event-info {
+                width: 100%;
+                max-width: 520px;
+                margin-top: 1.25rem;
+                padding: 1.25rem 1.5rem;
+                background: linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.35) 0%,
+                    rgba(255, 255, 255, 0.12) 100%
+                );
+                border: 1px solid rgba(255, 255, 255, 0.55);
+                border-radius: 1rem;
+                backdrop-filter: blur(16px) saturate(160%);
+                -webkit-backdrop-filter: blur(16px) saturate(160%);
+                box-shadow:
+                    0 8px 32px rgba(31, 38, 135, 0.12),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+                text-align: center;
+                animation: floatIn 1.2s ease-out 0.2s both;
+            }
+
+            .event-info p {
+                margin: 0.35rem 0;
+                line-height: 1.55;
+                color: var(--deep-frost);
+            }
+
+            .event-info .datetime {
+                font-family: "Cinzel", serif;
+                font-size: 1.05rem;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+            }
+
+            .event-info .meeting-id {
+                font-family: "Cinzel", serif;
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: #2b5876;
+                letter-spacing: 0.04em;
+            }
+
+            .event-info .hint {
+                font-size: 0.95rem;
+                font-style: italic;
+                color: #4a6170;
+            }
+
+            @media (max-width: 480px) {
+                .page {
+                    padding: 1.25rem 0.75rem;
+                }
+                .invitation-card {
+                    border-radius: 1rem;
+                }
+                .event-info {
+                    padding: 1rem 1.1rem;
+                    margin-top: 1rem;
+                }
+                .event-info .datetime,
+                .event-info .meeting-id {
+                    font-size: 0.95rem;
+                }
+                .event-info .hint {
+                    font-size: 0.85rem;
+                }
+                .btn {
+                    padding: 0.75rem 1.25rem;
+                    font-size: 0.9rem;
+                }
+                footer {
+                    font-size: 1.35rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="snowflakes" aria-hidden="true">
+            <div
+                class="snowflake"
+                style="left: 8%; animation-duration: 9s, 4s; font-size: 1rem"
+            >
+                ❄
+            </div>
+            <div
+                class="snowflake"
+                style="
+                    left: 18%;
+                    animation-duration: 12s, 5s;
+                    font-size: 1.4rem;
+                    animation-delay: 1s;
+                "
+            >
+                ❅
+            </div>
+            <div
+                class="snowflake"
+                style="
+                    left: 28%;
+                    animation-duration: 10s, 4.5s;
+                    font-size: 1.1rem;
+                    animation-delay: 2.5s;
+                "
+            >
+                ❄
+            </div>
+            <div
+                class="snowflake"
+                style="
+                    left: 40%;
+                    animation-duration: 14s, 6s;
+                    font-size: 1.6rem;
+                    animation-delay: 0.5s;
+                "
+            >
+                ❆
+            </div>
+            <div
+                class="snowflake"
+                style="
+                    left: 52%;
+                    animation-duration: 11s, 5s;
+                    font-size: 1.2rem;
+                    animation-delay: 3s;
+                "
+            >
+                ❅
+            </div>
+            <div
+                class="snowflake"
+                style="
+                    left: 64%;
+                    animation-duration: 13s, 4s;
+                    font-size: 1.5rem;
+                    animation-delay: 1.8s;
+                "
+            >
+                ❄
+            </div>
+            <div
+                class="snowflake"
+                style="
+                    left: 76%;
+                    animation-duration: 9.5s, 5.5s;
+                    font-size: 1rem;
+                    animation-delay: 4s;
+                "
+            >
+                ❆
+            </div>
+            <div
+                class="snowflake"
+                style="
+                    left: 88%;
+                    animation-duration: 12s, 4.8s;
+                    font-size: 1.3rem;
+                    animation-delay: 2s;
+                "
+            >
+                ❅
+            </div>
+        </div>
+
+        <div class="sparkle" style="top: 12%; left: 10%"></div>
+        <div
+            class="sparkle"
+            style="top: 22%; left: 88%; animation-delay: 1s"
+        ></div>
+        <div
+            class="sparkle"
+            style="top: 68%; left: 6%; animation-delay: 2s"
+        ></div>
+        <div
+            class="sparkle"
+            style="top: 82%; left: 92%; animation-delay: 0.5s"
+        ></div>
+
+        <main class="page">
+            <article class="invitation-card">
+                <a
+                    href="https://us06web.zoom.us/j/2346194656?omn=81565868307"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Unirse a la reunión de Zoom de los 15 años de Rachell"
+                >
+                    <img
+                        src="public/test15.jpg"
+                        alt="Invitación de los 15 años de Rachell — Sábado 21 de noviembre de 2026 a las 7:15 p.m. por Zoom"
+                    />
+                </a>
+            </article>
+
+            <section class="event-info">
+                <p class="datetime">
+                    Sábado 21 de noviembre de 2026 ·<strong>7:15 p. m.</strong>
+                    hora del este
+                </p>
+                <p class="meeting-id">ID de reunión: 234 619 4656</p>
+                <p class="hint">
+                    Si no abre, entra a la app de Zoom, toca "Unirse" y escribe
+                    el ID.
+                </p>
+            </section>
+
+            <div class="actions">
+                <a
+                    class="btn btn-primary"
+                    href="https://us06web.zoom.us/j/2346194656?omn=81565868307"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <span>🎥</span> Únete por Zoom
+                </a>
+                <button class="btn btn-secondary" onclick="copyMeetingId()">
+                    <span>📋</span> Copiar ID de reunión
+                </button>
+            </div>
+
+            <footer>Con mucho cariño</footer>
+        </main>
+
+        <script>
+            function copyMeetingId() {
+                const id = "234 619 4656";
+                navigator.clipboard
+                    .writeText(id.replace(/\s/g, ""))
+                    .then(() => {
+                        const btn = document.querySelector(".btn-secondary");
+                        const original = btn.innerHTML;
+                        btn.innerHTML = "<span>✓</span> ID copiado";
+                        setTimeout(() => (btn.innerHTML = original), 2000);
+                    })
+                    .catch(() => {
+                        alert("ID de reunión: 234 619 4656");
+                    });
+            }
+        </script>
+    </body>
+</html>
